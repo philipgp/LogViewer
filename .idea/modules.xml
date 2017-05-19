@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logparser.iml" filepath="$PROJECT_DIR$/.idea/modules/logparser.iml" group="logparser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logparser/logparser_main.iml" filepath="$PROJECT_DIR$/.idea/modules/logparser/logparser_main.iml" group="logparser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logparser/logparser_test.iml" filepath="$PROJECT_DIR$/.idea/modules/logparser/logparser_test.iml" group="logparser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logviewer.iml" filepath="$PROJECT_DIR$/.idea/modules/logviewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logviewer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/logviewer_main.iml" group="logviewer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logviewer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/logviewer_test.iml" group="logviewer" />
+    </modules>
+  </component>
+</project>
