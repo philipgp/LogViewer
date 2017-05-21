@@ -1,3 +1,3 @@
 rootProject.name = 'logviewer'
-include 'logparser'
+include 'logparser','source','destination','common'
 
