@@ -1,4 +1,4 @@
-package logparser;
+package common.config;
 
 public class LogSourceConfig {
 	private String lineFormat;

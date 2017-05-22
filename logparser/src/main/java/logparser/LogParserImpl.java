@@ -11,6 +11,8 @@ import org.util.logviewer.source.LogSource;
 
 import common.LogMetaData;
 import common.LogWithMetadata;
+import common.config.LogConfig;
+import common.config.LogSourceConfig;
 import destination.LogDestination;
 
 public class LogParserImpl implements LogParser{

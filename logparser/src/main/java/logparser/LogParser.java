@@ -2,6 +2,8 @@ package logparser;
 
 import org.util.logviewer.source.LogSource;
 
+import common.config.LogSourceConfig;
+
 import destination.LogDestination;
 
 public interface LogParser {

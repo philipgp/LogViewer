@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Sun May 21 17:04:43 AST 2017
-build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;common;destination;logparser;source;
+#Mon May 22 16:48:27 AST 2017
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;common;destination;logparser;main;menu;source;
 org.springsource.ide.eclipse.gradle.linkedresources=
 org.springsource.ide.eclipse.gradle.rootprojectloc=

@@ -13,6 +13,7 @@ import org.util.logviewer.source.plainstring.PlainStringLogSource;
 
 import common.LogMetaData;
 import common.LogWithMetadata;
+import common.config.LogSourceConfig;
 import destination.LogDestination;
 
 public class LogParserImplTest {

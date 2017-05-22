@@ -1,9 +1,25 @@
-package logparser;
+package common.config;
 
 import java.util.List;
 
 public class LogConfig {
-	private String configName;
+	private List<LogApplicationConfig> applications;
+
+	
+	public List<LogApplicationConfig> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<LogApplicationConfig> applications) {
+		this.applications = applications;
+	}
+	@Override
+	public String toString() {
+		return "LogConfig [applications=" + applications + "]";
+	}
+
+	
+	/*private String configName;
 	private LogSourceType logSourceType;
 	private List<LogServer> servers;
 	
@@ -29,5 +45,5 @@ public class LogConfig {
 	public String toString() {
 		return "LogConfig [configName=" + configName + ", logSourceType="
 				+ logSourceType + ", servers=" + servers + "]";
-	}
+	}*/
 }
