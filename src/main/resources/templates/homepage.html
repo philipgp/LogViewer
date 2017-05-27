@@ -28,11 +28,14 @@ hideAllUnderServer();
     function hideAllFromToDateType(){
     $('#fromtodateDiv').hide();
     }
-
+    function hideGoButton(){
+    $("#gobutton").hide();
+    }
     function showEnvironmentForAppliction(appname){
 
     hideAllUnderApplication();
     hideAllUnderStreamType();
+    hideGoButton();
     //$('#streamDiv').show();
     $(".envoptions").each(function( index ) {
   var currentApp = $(this).attr('app');
@@ -73,15 +76,21 @@ $("#servDiv").show();
     function showFromToDate(){
 $("#fromtodateDiv").show();
     }
+    function showGoButton(){
+    $("#gobutton").show();
+    }
 $(document).ready(function(){
 
      $(".appoptions").click(function(){
         showEnvironmentForAppliction($(this).attr("value"));
+        hideGoButton();
     });
     $(".envoptions").click(function(){
         showServersForEnvironment($(this).attr("value"));
         showLoggersForServer($('.appoptions:checked').attr("value"));
         showstreamers();
+        showGoButton();
+
     });
      $("#fromtostream").click(function(){
         showFromToDate();
@@ -159,5 +168,6 @@ $(document).ready(function(){
     <span>Enter From Date(dd-MM-yyyy)</span><input type="text" id="fromdate"/>
     <span>Enter To Date(dd-mm-yyyy)</span><input type="text" id="todate">
 </div>
+<input id ='gobutton' hidden type="button" value="Go" name="streamgroup">
 </body>
 </html>

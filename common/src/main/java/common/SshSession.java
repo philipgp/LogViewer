@@ -11,5 +11,9 @@ public class SshSession {
 		this.session = session;
 		this.logServer = logServer;
 	}
+
+	public boolean matchesServer(LogServer logServer){
+		return this.logServer.equals(logServer);
+	}
 	
 }

@@ -1,5 +1,6 @@
-package org.logviewer;
+package org.logviewer.controller;
 
+import common.config.LogConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +14,9 @@ import java.util.Map;
 public class HomePageController {
 
     @RequestMapping("/")
-    public String welcome(Map<String, Object> model) {
+    public String welcome(Map<String, Object> model) throws Exception {
+        LogConfigReader loginConfigReader = new LogConfigReader();
+        LogConfig config = loginConfigReader.getConfig();
         model.put("message", "test");
         return "homepage";
     }

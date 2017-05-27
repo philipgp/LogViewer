@@ -1,5 +1,7 @@
 package common.config;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 public class LogServer {
@@ -64,6 +66,14 @@ public class LogServer {
 	public void setLoggers(List<LogLogger> loggers) {
 		this.loggers = loggers;
 	}
+
+	public boolean equals(LogServer logServer){
+        if(StringUtils.equalsIgnoreCase(getName(),logServer.getName())
+                &&StringUtils.equalsIgnoreCase(getHostNameOrIp(),logServer.getHostNameOrIp()))
+            return true;
+        else
+            return false;
+    }
 	@Override
 	public String toString() {
 		return "LogServer [name=" + name + ", hostNameOrIp=" + hostNameOrIp

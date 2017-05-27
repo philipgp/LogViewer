@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="common_main" />
     <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.195" level="project" />
     <orderEntry type="library" name="Gradle: com.jcraft:jsch:0.1.54" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.5" level="project" />
   </component>
 </module>
