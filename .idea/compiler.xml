@@ -2,10 +2,20 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="common_main" target="1.8" />
+      <module name="common_test" target="1.8" />
+      <module name="destination_main" target="1.8" />
+      <module name="destination_test" target="1.8" />
       <module name="logparser_main" target="1.8" />
       <module name="logparser_test" target="1.8" />
       <module name="logviewer_main" target="1.8" />
       <module name="logviewer_test" target="1.8" />
+      <module name="main_main" target="1.8" />
+      <module name="main_test" target="1.8" />
+      <module name="menu_main" target="1.8" />
+      <module name="menu_test" target="1.8" />
+      <module name="source_main" target="1.8" />
+      <module name="source_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Title</title>
+    <script>
+    function hideAllEnvironment(){
+        $(".envoptionsdiv").hide();
+    }
+    function hideAllUnderApplication(){
+hideAllEnvironment();
+hideAllUnderEnvironment();
+    }
+    function hideAllUnderEnvironment(){
+$(".servoptions").parent().hide();
+$(".servoptions").prop('checked',false);
+hideAllUnderServer();
+    }
+     function hideAllUnderServer(){
+    $(".loggeroptions").parent().hide();
+    $(".loggeroptions").prop('checked',false);
+  //  hideAllUnderStreamType();
+    }
+    function hideAllUnderStreamType(){
+    $('#streamDiv').hide();
+    hideAllFromToDateType();
+    }
+    function hideAllFromToDateType(){
+    $('#fromtodateDiv').hide();
+    }
+
+    function showEnvironmentForAppliction(appname){
+
+    hideAllUnderApplication();
+    hideAllUnderStreamType();
+    //$('#streamDiv').show();
+    $(".envoptions").each(function( index ) {
+  var currentApp = $(this).attr('app');
+  if(currentApp == appname){
+  $(this).parent().show();
+  }
+});
+$("#envDiv").show();
+    }
+
+    function showServersForEnvironment(environment){
+
+    hideAllUnderEnvironment();
+    $(".servoptions").each(function( index ) {
+  var currentEnv = $(this).attr('env');
+  if(currentEnv == environment){
+  $(this).parent().show();
+  }
+});
+$("#servDiv").show();
+    }
+
+     function showLoggersForServer(app){
+
+    hideAllUnderServer();
+    $('#loggerDiv').show();
+    $(".loggeroptions").each(function( index ) {
+  var currentApp = $(this).attr('app');
+  if(currentApp == app){
+  $(this).parent().show();
+  }
+});
+
+    }
+    function showstreamers(){
+    $("#streamDiv").show();
+    }
+    function showFromToDate(){
+$("#fromtodateDiv").show();
+    }
+$(document).ready(function(){
+
+     $(".appoptions").click(function(){
+        showEnvironmentForAppliction($(this).attr("value"));
+    });
+    $(".envoptions").click(function(){
+        showServersForEnvironment($(this).attr("value"));
+        showLoggersForServer($('.appoptions:checked').attr("value"));
+        showstreamers();
+    });
+     $("#fromtostream").click(function(){
+        showFromToDate();
+    });
+
+
+
+
+});
+</script>
+</head>
+<body>
+<div id ="appDiv">
+    <fieldset id="appgroup">
+        <div>
+        <input class="appoptions" type="radio" value="eis" name="appgroup">
+            <span >EIS</span>
+        </div>
+        <div>
+            <input class="appoptions" type="radio" value="nsp" name="appgroup">
+            <span >NSP</span>
+        </div>
+    </fieldset>
+
+</div>
+<div id ="envDiv" >
+    <fieldset id="envgroup">
+        <div class="envoptionsdiv" hidden>
+        <input class="envoptions" type="radio" value="eis-sit" name="envgroup" app="eis">
+            <span>SIT</span>
+        </div>
+        <div class="envoptionsdiv" hidden>
+            <input class="envoptions" type="radio" value="nsp-dev" name="envgroup" app="nsp">
+            <span>DEV</span>
+        </div>
+    </fieldset>
+</div>
+<div id ="servDiv" hidden>
+    <fieldset id="servgroup">
+        <div class="servoptionsdiv" hidden>
+            <input class="servoptions" type="checkbox" value="eis-sit-s1" name="servgroup" env="eis-sit">
+            <span>EIS SIT1</span>
+        </div>
+        <div class="servoptionsdiv" hidden>
+            <input class="servoptions" type="checkbox" value="nsp-dev-s1" name="servgroup" env="nsp-dev">
+            <span>NSP DEV1</span>
+        </div>
+    </fieldset>
+</div>
+<div id ="loggerDiv" hidden>
+    <fieldset id="loggergroup">
+        <div class="loggeroptionsdiv" hidden>
+            <input class="loggeroptions" type="checkbox" value="eis-sit-s1" name="loggergroup" app="eis">
+            <span>App Server</span>
+        </div>
+        <div class="loggeroptionsdiv" hidden>
+            <input class="loggeroptions" type="checkbox" value="nsp-dev-s1" name="loggergroup" app="nsp">
+            <span>Server Log</span>
+        </div>
+    </fieldset>
+</div>
+<div id ="streamDiv" hidden>
+    <fieldset id="streamgroup">
+        <div class="streamoptionsdiv" >
+            <input class="streamoptions"  id = 'livestream' type="radio" value="live" name="streamgroup">
+            <span>Live</span>
+        </div>
+        <div class="streamoptionsdiv" >
+            <input class="streamoptions" id ='fromtostream' type="radio" value="fromto" name="streamgroup">
+            <span>From To Date</span>
+        </div>
+    </fieldset>
+</div>
+<div id ="fromtodateDiv" hidden>
+    <span>Enter From Date(dd-MM-yyyy)</span><input type="text" id="fromdate"/>
+    <span>Enter To Date(dd-mm-yyyy)</span><input type="text" id="todate">
+</div>
+</body>
+</html>
