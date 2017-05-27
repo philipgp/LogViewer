@@ -13,11 +13,15 @@ import java.util.Map;
 @Controller
 public class HomePageController {
 
+    LogConfig config;
+
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) throws Exception {
-        LogConfigReader loginConfigReader = new LogConfigReader();
-        LogConfig config = loginConfigReader.getConfig();
-        model.put("message", "test");
+        if(config == null) {
+            LogConfigReader loginConfigReader = new LogConfigReader();
+            config = loginConfigReader.getConfig();
+        }
+        model.put("config", config);
         return "homepage";
     }
     @RequestMapping("/2")

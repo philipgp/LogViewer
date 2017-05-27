@@ -11,11 +11,11 @@
           "name": "DEV",
           "servers": [
             {
-              "name": "DEV",
-              "hostNameOrIp": "dohqdcsp01",
+              "name": "local",
+              "hostNameOrIp": "localhost",
               "port": 22,
-			  "userName":"support61008ro",
-			  "password":"",
+			  "userName":"test",
+			  "password":"mytpas123",
 			  "promptPassword":true,
 			  "promptUserName":false,
 			  "serverLogFolder":"",
@@ -23,6 +23,7 @@
 			  {
 				"logFileName":"",
 				"archiveFolder":"",
+				"name":"applog",
 				"logFormat":""
 			  }
 			  ]
@@ -37,7 +38,7 @@
           "name": "SIT",
           "servers": [
             {
-              "name": "DEV",
+              "name": "SIT",
               "hostNameOrIp": "DOHQDNSP02",
               "port": 22,
 			  "userName":"nspuser",
@@ -47,7 +48,7 @@
 			  "serverLogFolder":"/app/logs/jboss/mbe/AS_SIT_MBE01/server.log",
 			  "loggers":[
 			  {
-			  	"name":"applog",
+			  	"name":"applog2",
 				"logFileName":"/jboss/applications/mbe/deployments/eislog1/log.log",
 				"archiveFolder":"",
 				"logFormat":"%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n"

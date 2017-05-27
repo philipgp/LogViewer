@@ -1,4 +1,4 @@
-package org.logviewer.service;
+package org.logviewer.controller;
 
 import com.jcraft.jsch.Session;
 import common.SshSession;
