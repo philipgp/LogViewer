@@ -79,6 +79,47 @@ $("#fromtodateDiv").show();
     function showGoButton(){
     $("#gobutton").show();
     }
+
+
+
+function sync(){
+ var visibleApp = $(".appoptions:visible")[0];
+ var visibleEnvironment = $(".envoptions:visible")[0];
+ var checkedLoggers = $(".loggeroptions:checked");
+ var checkedServers = $(".servoptions:checked");
+var request=new Object();;
+request.appName=$(visibleApp).attr('value');
+request.environment=$(visibleEnvironment).attr('env');
+var loggers=[];
+request.loggerNames=loggers;
+ $(checkedLoggers).each(function( index ) {
+var logger =$(this).attr('logger');
+loggers.push(logger);
+  });
+var servers=[];
+request.servers=servers;
+ $(checkedServers).each(function( index ) {
+var server = new Object();
+server.name=$(this).attr('servName');
+servers.push(server);
+  });
+var requestJson = JSON.stringify(request);
+$.ajax({
+ dataType: 'json',
+  method: "POST",
+headers: {"Content-Type": "application/json"},
+  url: "sync",
+  data: requestJson
+})
+  .done(function( msg ) {
+    alert( "Login Result " + msg.status );
+  });
+
+
+
+}
+
+
 function checkAndDoLogin(server){
 if($(server).attr('loginRequired')=='true'){
 var password;
@@ -131,6 +172,10 @@ $(document).ready(function(){
         checkAndDoLogin($(this));
     });
 
+ $("#gobutton").click(function(){
+        sync();
+    });
+
 });
 </script>
 </head>
@@ -138,7 +183,7 @@ $(document).ready(function(){
 <div id ="appDiv">
     <fieldset id="appgroup">
         <div th:each="application : ${config.applications}">
-            <input class="appoptions" type="radio" th:value="${application.applicationName}" value="eis" name="appgroup"></input>
+            <input class="appoptions" type="radio" th:value="${application.applicationName}" th:attr="app=${application.applicationName}" value="eis" name="appgroup"></input>
             <span th:text="${application.applicationName}">EIS</span>
         </div>
     </fieldset>
@@ -150,9 +195,9 @@ $(document).ready(function(){
             <div th:each="environment : ${application.environments}">
         <div class="envoptionsdiv" hidden='true'>
         <input class="envoptions" type="radio"
-               th:value="${application.applicationName} + '-'+ ${environment.name}"
-               name="envgroup" value="eis-sit" app="eis"
-               th:attr="app=${application.applicationName}"></input>
+               th:value="${application.applicationName}+'-'+${environment.name}"
+               name="envgroup" value="eis-sit" app="eis" env="sit"
+               th:attr="env=${environment.name},app=${application.applicationName}"></input>
             <span th:text="${environment.name}">SIT</span>
         </div>
         </div>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Component
 public class SyncService {
     public SyncResponse sync(SyncRequest request){
+
         return null;
     }
 }

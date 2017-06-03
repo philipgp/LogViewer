@@ -17,7 +17,7 @@
               "port": 22,
 			  "userName":"test",
 			  "password":"mytpas123",
-			  "promptPassword":true,
+			  "promptPassword":false,
 			  "promptUserName":false,
 			  "serverLogFolder":"",
 			  "loggers":[

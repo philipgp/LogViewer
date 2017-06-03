@@ -4,21 +4,21 @@ import org.logviewer.request.SyncRequest;
 import org.logviewer.response.SyncResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by philip on 27/5/17.
  */
-@Controller
+@RestController
 public class SyncController {
 
     @Autowired
     SyncService syncService;
 
+
+    @RequestMapping(value = "/sync",method = RequestMethod.POST)
     @ResponseBody
-    @RequestMapping("/sync")
-    public SyncResponse sync(SyncRequest request){
+    public SyncResponse sync(@RequestBody  SyncRequest request){
         return syncService.sync(request);
     }
 }
