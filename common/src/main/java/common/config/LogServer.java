@@ -69,7 +69,8 @@ public class LogServer {
 
 	public boolean equals(LogServer logServer){
         if(StringUtils.equalsIgnoreCase(getName(),logServer.getName())
-                &&StringUtils.equalsIgnoreCase(getHostNameOrIp(),logServer.getHostNameOrIp()))
+                &&StringUtils.equalsIgnoreCase(getHostNameOrIp(),logServer.getHostNameOrIp())
+				&&StringUtils.equalsIgnoreCase(getUserName(),logServer.getUserName()))
             return true;
         else
             return false;

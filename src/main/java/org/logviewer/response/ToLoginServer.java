@@ -5,7 +5,7 @@ package org.logviewer.response;
  */
 public class ToLoginServer {
 
-    private String loggerName,hostName;
+    private String name,hostName;
     private String userName,password;
 
     public String getUserName() {
@@ -26,12 +26,24 @@ public class ToLoginServer {
 
     public ToLoginServer() {
     }
-    public String getLoggerName() {
-        return loggerName;
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ToLoginServer{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", hostName='").append(hostName).append('\'');
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 
-    public void setLoggerName(String loggerName) {
-        this.loggerName = loggerName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHostName() {
@@ -42,12 +54,4 @@ public class ToLoginServer {
         this.hostName = hostName;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("ToLoginServer{");
-        sb.append("loggerName='").append(loggerName).append('\'');
-        sb.append(", hostName='").append(hostName).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

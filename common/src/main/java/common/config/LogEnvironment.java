@@ -1,5 +1,6 @@
 package common.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogEnvironment {
@@ -11,6 +12,12 @@ public class LogEnvironment {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void addServer(LogServer logServer){
+		if(servers== null)
+			servers = new ArrayList<>();
+		servers.add(logServer);
 	}
 
 	public List<LogServer> getServers() {

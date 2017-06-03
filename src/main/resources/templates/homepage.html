@@ -79,6 +79,38 @@ $("#fromtodateDiv").show();
     function showGoButton(){
     $("#gobutton").show();
     }
+function checkAndDoLogin(server){
+if($(server).attr('loginRequired')=='true'){
+var password;
+if($(server).attr('promptPassword')=='true'){
+ password = prompt("Enter password ");
+}else
+password = $(server).attr('password');
+
+var userName;
+if($(server).attr('promptUserName')=='true'){
+ userName = prompt("Enter username ");
+}else
+userName = $(server).attr('userName');
+
+var name=$(server).attr("name");
+var hostname=$(server).attr("hostname");
+$.ajax({
+  method: "POST",
+  url: "login",
+  data: { userName: userName, password: password ,name:name,hostname:hostname}
+})
+  .done(function( msg ) {
+    alert( "Login Result " + msg.status );
+if(msg.status=='SUCCESS'){
+$(server).attr('loginRequired','false');
+}else{
+$(this).prop('checked', false);
+}
+  });
+}
+}
+ 
 $(document).ready(function(){
 
      $(".appoptions").click(function(){
@@ -95,24 +127,9 @@ $(document).ready(function(){
      $("#fromtostream").click(function(){
         showFromToDate();
     });
-
-
-function checkAndDoLogin(){
-    var visibleservers = $('.servoptions:visible');
-    $( visibleservers).each(function( index ) {
-        if($(this).attr('promptPassword')=='true'){
-            password =prompt('Enter password for'+$(this).attr('hostname'));
-        }
-        }
-        );
-    }
-}
-     $("#gobutton").click(function(){
-        checkAndDoLogin();
+ $(".servoptions").click(function(){
+        checkAndDoLogin($(this));
     });
-
-
-
 
 });
 </script>
@@ -140,7 +157,7 @@ function checkAndDoLogin(){
         </div>
         </div>
         </div>
-    </fieldset>
+    </fieldset> 
 </div>
 <div id ="servDiv" hidden='true'>
     <fieldset id="servgroup">
@@ -149,13 +166,12 @@ function checkAndDoLogin(){
                 <div th:each="server : ${environment.servers}">
         <div class="servoptionsdiv" hidden='true'>
             <input class="servoptions" type="checkbox"
-                   th:attr='servName=${server.name}' th:attr='appName=${application.name}' th:attr='envName=${environment.name}'
-                   th:attr='hostname=${server.hostNameOrIp}' th:attr='promptPassword=${server.promptPassword}'
-                   th:attr='promptUserName=${server.promptUserName}'
+                   th:attr="servName=${server.name},appName=${application.applicationName},envName=${environment.name},hostname=${server.hostNameOrIp},promptPassword=${server.promptPassword},promptUserName=${server.promptUserName},loginRequired=${server.loginRequired},userName=${server.userName},password=${server.password},env=${application.applicationName} + '-'+ ${environment.name}"
+
                    th:value="${application.applicationName} + '-'+ ${environment.name}+'-'+${server.name}"
-                   value="eis-sit-s1" promptUserName="false" promptPassword="true" hostname="localhost" env="eis-sit"  envName="sit" appName="EISQmiles"
-                   name="servgroup" servName="sit1"
-                   th:attr="env=${application.applicationName} + '-'+ ${environment.name}"></input>
+                   value="eis-sit-s1" promptUserName="true" loginRequired="true" promptPassword="true" hostname="localhost" env="eis-sit"  envName="sit" appName="EISQmiles"
+                   name="servgroup" userName="" password="" servName="sit1"
+                   ></input>
             <span th:text="${server.name}">EIS SIT1</span>
 
         </div>
@@ -167,18 +183,16 @@ function checkAndDoLogin(){
 <div id ="loggerDiv" hidden='true'>
     <fieldset id="loggergroup">
         <div th:each="application : ${config.applications}">
-            <div th:with="environment = ${application.environments[0]}">
-                <div th:with="server = ${environment.servers[0]}">
-                    <div th:each="logger : ${server.loggers}">
+
+                    <div th:each="logger : ${application.loggerNames}">
         <div class="loggeroptionsdiv" hidden='true'>
             <input class="loggeroptions" type="checkbox"
-                   th:value="${application.applicationName} +'-'+ ${logger.name}"
+                   th:value="${application.applicationName} +'-'+ ${logger}"
                    value="eis-log1" logger="applog" app="eis"
-                   name="loggergroup" th:attr="app=${application.applicationName}" th:attr="logger=${logger.name}"/>
-            <span th:text="${logger.name}">App Server</span>
+                   name="loggergroup" th:attr="app=${application.applicationName},logger=${logger}" />
+            <span th:text="${logger}">App Server</span>
         </div>
-                    </div>
-                </div>
+                    
             </div>
         </div>
     </fieldset>
@@ -187,7 +201,7 @@ function checkAndDoLogin(){
     <fieldset id="streamgroup">
         <div class="streamoptionsdiv" >
             <input class="streamoptions"  id = 'livestream' type="radio" value="live" name="streamgroup"/>
-            <span>Live</span> 
+            <span>Live</span>
         </div>
         <div class="streamoptionsdiv" >
             <input class="streamoptions" id ='fromtostream' type="radio" value="fromto" name="streamgroup"/>

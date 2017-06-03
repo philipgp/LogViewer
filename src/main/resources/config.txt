@@ -6,6 +6,7 @@
         "ffpNumber",
         "customerProfileId"
       ],
+      "loggerNames":["applog"],
       "environments": [
         {
           "name": "DEV",
@@ -33,6 +34,7 @@
       ]
     }, {
       "applicationName": "NSP",
+      "loggerNames":["applog"],
       "environments": [
         {
           "name": "SIT",
